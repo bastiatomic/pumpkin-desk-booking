@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+
+<div class="grid2">
+   
+    <div>
+        <h2>Your Profile</h2>
+        <p>    
+            ID: {{local_user.id}}
+        </p>
+        <p>
+            Name: {{local_user.username}}
+        </p>
+        
+
+    </div>
+
+    <div>
+
+        <div>
+            <h2>E-Mail ändern</h2>
+        
+            <label>Aktuelle E-Mail</label><br>
+            <input [(ngModel)]="user_options_change.old_mail" type="text"><br><br>
+        
+            <label>Neue E-Mail</label><br>
+            <input [(ngModel)]="user_options_change.new_mail" type="text"><br><br>
+        
+        
+            <button style="margin-left: 3px;" (click)="request_mail_change()">Absenden!</button>
+        </div>
+        
+    </div>
+
+    <div>
+
+        <div>
+            <h2>Passwort ändern</h2>
+        
+            <label>Altes Passwort</label><br>
+            <input [(ngModel)]="user_options_change.old_pw" type="password"><br><br>
+        
+            <label>Neues Passwort</label><br>
+            <input [(ngModel)]="user_options_change.new_pw" type="password"><br><br>
+        
+            <label>Passwort wiederholen</label><br>
+            <input [(ngModel)]="user_options_change.new_pw2"  type="password"><br><br>
+            
+            <button style="margin-left: 3px;" (click)="request_pw_change()">Absenden!</button>
+        </div>
+        
+    </div>
+
+    <div>
+
+        
+        <h2>Controller-Passwort ändern</h2>
+
+        <p>
+            Wähle deine Farben von links nach rechts aus
+        </p>
+
+        <div class="con_pw_grid">
+            <div style="margin: 10px" *ngFor="let item of user_options_change.controller_pw">
+                <div
+                    style="width: 50px; height: 50px;margin: 10px; border: 1px solid black;" 
+                    [style.backgroundColor]="item.color">
+                </div>
+
+                <br>
+                <div *ngFor="let obj of color_selector">
+                    <div
+                    class="color_selector_clickable" 
+                    [style.backgroundColor]="obj.color" 
+                    (click)="color_change(item, obj.color)"></div>
+                </div>
+            </div>
+        </div>
+
+    
+        <div style="display: flex;
+        justify-content: center;">
+            
+        <button (click)="request_controller_pw_change()">Absenden!</button>
+        </div>
+        
+    </div>
+</div>

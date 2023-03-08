@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+
+<br /><br /><br />
+
+<div class="grid">
+    
+  <div style="margin-left: auto; border: 2px solid rgb(239, 136, 41); border-radius: 10px">
+    <h2 style="margin-left: 10px;">Einstellungen</h2>
+   
+      <button style="height: 40px" (click)="select_floor('1')">
+        Erdgeschoss
+      </button>
+
+      <button
+        style="height: 40px; margin-top: 5px"
+        (click)="select_floor('2')"
+      >
+        Erste Etage
+      </button><br><br><br>
+
+      <div  class="time_changer">
+        <label style="margin-left: 10px;">Uhrzeit:</label>
+        <input [(ngModel)]="current_date" style="margin-left: 10px;" type="datetime-local">
+        <button (click)="lookupTableByDateAndFloor()">Senden</button>
+      </div>
+  
+  </div>
+
+  <div>
+    <div
+      style="border: 2px solid rgb(239, 136, 41); border-radius: 10px"[style.width.px]="img_size * img_scaling*1.1" [style.height.px]="img_size * img_scaling*1.1" 
+      class="visual_map"
+    >
+    
+
+      <div *ngIf="current_floor == '1'">
+        <img
+          [style.width.px]="img_size * img_scaling"
+          [style.height.px]="img_size * img_scaling"
+          src="../../assets/stage1_1.png"
+        />
+      </div>
+
+      <div *ngIf="current_floor == '2'">
+        <img
+          [style.width.px]="img_size * img_scaling"
+          [style.height.px]="img_size * img_scaling"
+          src="../../assets/stage2_1.png"
+        />
+      </div>
+
+      <div *ngFor="let station of stations">
+        <div *ngIf="station.floor == current_floor">
+          <div
+            (click)="openStationModal(station)"
+            [ngClass]="station.status"
+            class="table"
+            [style.top.px]="station.location.top * img_scaling"
+            [style.left.px]="station.location.left * img_scaling"
+          >
+            <div *ngIf="station.status == 'blocked'">
+                {{station.id}}
+            </div>
+
+            <div *ngIf="station.status == 'free'">
+              {{station.id}}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding-left: 10px; padding-right: 10px; border: 2px solid rgb(239, 136, 41); border-radius: 10px">
+    
+    <app-news></app-news>
+    <hr>
+
+    <div *ngIf="!openModal">
+        <div>
+          <!--TODO: Konfetti bei korrekter Buchung https://www.instagram.com/p/CnhoVKZjFs5/-->
+        <h2>Reservierungs-Interface</h2>
+        <p><i>Klicke auf eine grüne Station, um zu beginnen</i></p>
+        </div>
+    </div>
+    <div *ngIf="openModal">
+        <div>
+            <div *ngIf="modalUser.status == 'blocked'">
+                <h2>Halt! Diese Station ist gebucht!</h2>
+                <p>Bis: {{ toDEstring(modalUser.bookingEndTime) }}</p>
+            </div>
+        
+            <div *ngIf="modalUser.status == 'free'">
+                <h2>Reservierung eintragen</h2>
+                <div *ngIf="booking_requested">
+                   
+                    <p> Name: {{local_user.username}}</p><br />
+                
+                    <label>Von:</label><br />
+                    <input type="datetime-local" [(ngModel)]="tmp_reservation.timeStart" /><br /><br />
+                
+                    <label>Bis:</label><br />
+                    <input type="datetime-local" [(ngModel)]="tmp_reservation.timeEnd"/><br />
+                    </div>
+                    <p><button (click)="register_request(modalUser)">Jetzt eintragen!</button></p>
+                    <p>Hinweis: Eine Reservierung wird erst als Buchung bestätigt, wenn diese mit dem Controller am Schreibtisch authorisiert wird.</p>
+                    <hr>
+                    <h2>Stations-Eigenschaften</h2>
+                    <div class="booking_station_features">
+                      <p>ID: {{modalUser.id}}</p>
+                      <p>Name: {{modalUser.name}}</p>
+                      <p>Equipment: {{modalUser.equipment}}</p> 
+                     
+                    </div>
+        
+            </div>
+ 
+        </div>
+
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.reservation_box{
+    height: 8rem;
+    max-width: 36.5%;
+    border: 2px solid rgb(239,136,41);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); 
+    margin-left: 12px;
+    margin-bottom: 8px;
+    padding: 8px;
+}
+
+.reservation_box .name{
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+}
+
+.reservation_box .date{
+    padding-left: 4px;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+}
+
+.reservation_box .cancel{
+    max-height: 50px;
+    max-width: 100px;
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    justify-self: right;
+}
+
+.reservation_box .more{
+    max-height: 50px;
+    max-width: 50px;
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+    justify-self: right;
+}

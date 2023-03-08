@@ -1,0 +1,29 @@
+
+<div class="landing-page">
+    <div class="login">
+        <h2>Login</h2>
+        <label>Name</label><br><br>
+        <input class="input" type="text" placeholder="..." [(ngModel)]="tmp_user_name">
+        <br><br>
+        <label>Passwort</label><br><br>
+        <input class="input" type="password" placeholder="..."  [(ngModel)]="tmp_user_pw">
+        <br><br>
+        <button class="large_button" (click)="login()">↗️ Login</button>
+        
+    </div>
+
+    <br>
+
+    <div class="support"> 
+        <h3>Kontaktbox</h3>
+        <p>Falls du Probleme damit haben solltest, dich anzumelden, zögere nicht, dich an einen <strong>Admin</strong> zu wenden</p>
+        <input class="question" type="text" placeholder="Schreibe hier ...">
+        <br><br>
+        <button class="large_button">↗️ Anfrage senden</button>
+    </div>
+    
+</div>
+
+<div *ngIf="login_load_modal" style="width: 500px; height: 280px; position: absolute; top: 180px; left: 700px; border: 1px solid black;border-radius:10px; background-color: black;">
+        <h2>{{login_modal_text}}</h2>
+</div>

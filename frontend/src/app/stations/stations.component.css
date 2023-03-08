@@ -1,0 +1,51 @@
+*{
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 6fr 3fr;
+   
+}
+
+.blocked{
+    border:1px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    position:absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255,0,0,0.5);
+}
+
+.free{
+    border: 1px solid lightgreen;
+    border-radius: 10px;
+    padding: 10px;
+    position:absolute;
+    width: 20px;
+    height: 20px;
+    background-color:rgba(144,238,144,0.5);
+}
+
+.table{
+    text-align: center;
+}
+
+.table:hover{
+    cursor: pointer;
+}
+
+.visual_map{
+    display: grid;
+    margin: auto;
+    width: 50%;
+    position: relative; 
+    overflow: hidden;
+}
+
+
+.path{
+    margin: 10px;
+    padding: 10px;
+}

@@ -1,0 +1,15 @@
+<h2>News</h2>
+
+<table>
+
+    <tr *ngFor="let topic of news">
+        <td>
+            {{topic.content}}
+        </td>
+        <td>
+            @{{topic.author}}
+        </td>
+
+    </tr>
+
+</table>

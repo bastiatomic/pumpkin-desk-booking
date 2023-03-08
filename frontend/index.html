@@ -1,0 +1,148 @@
+<head>
+
+    <title>Pumpkin Inc</title>
+
+    <style>
+        * {
+            font-family: helvetica;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <img src="image.png" style="width: 50px; height:50px">
+    <h1 style="display: inline">Pumpkin International Resource Scheduler</h1>
+
+    <div>
+        <span id="name_fe"></span>
+        <span id="pw_fe"></span>
+    </div>
+
+    <div>
+        <label>name: </label>
+        <input type="text" id="name" placeholder="Name...">
+        <br>
+        <label>password: </label>
+        <input type="password" id="pw" placeholder="Passwort...">
+        <br>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <h2>Stations</h2>
+    <div id="stations"></div>
+
+    <h2>News</h2>
+    <div id="topics"></div>
+
+
+</body>
+
+<script>
+    stations = [
+        { id: 0, status: "blocked", untilDate: randomDate() },
+        { id: 1, status: "free", untilDate: randomDate() },
+        { id: 2, status: "blocked", untilDate: randomDate() },
+        { id: 3, status: "free", untilDate: randomDate() },
+        { id: 4, status: "blocked", untilDate: randomDate() },
+        { id: 5, status: "free", untilDate: randomDate() },
+    ]
+
+    topics = [
+        { content: "Ich mag Züge" },
+        { content: "Jonas riecht gut" },
+        { content: "Moin moin Leute" }
+    ]
+
+    for (let i of stations) {
+        a = document.getElementById("stations")
+        b = document.createElement("p")
+        c = document.createElement("hr")
+        b.innerText = i.id
+
+        if (i.status == "blocked") {
+            b.style.color = "red"
+            b.innerText = "Station with ID " + i.id + " is " + i.status + " until " + toDEstring(i.untilDate)
+        } else {
+            b.innerText = "Station with ID " + i.id + " is " + i.status
+            b.style.color = "green"
+        }
+
+        d = document.createElement("button")
+
+        if (i.status == "blocked") {
+            d.innerText = "Unlock station"
+        } else {
+            d.innerText = "Lock station"
+        }
+
+        a.appendChild(b)
+        a.appendChild(d)
+        a.appendChild(c);
+
+
+    }
+
+    for (let j of topics) {
+        m = document.getElementById("topics")
+        n = document.createElement("div")
+        n.innerText = " - " + j.content
+
+        m.appendChild(n)
+    }
+
+    function login() {
+        pw = document.getElementById("pw").value
+        name = document.getElementById("name").value
+
+        console.log(name + " " + pw)
+
+        pw_fe = document.getElementById("pw_fe")
+        name_fe = document.getElementById("name_fe")
+
+        name_fe.innerText = name
+        pw_fe.innerText = pw
+    }
+    function randomDate() {
+        start = new Date(2012, 0, 1)
+        end = new Date()
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
+    function toDEstring(date) {
+        var dateStr =
+            ("00" + date.getDate()).slice(-2) + "." +
+            ("00" + (date.getMonth() + 1)).slice(-2) + "." +
+            date.getFullYear() + " " +
+            " um " +
+            ("00" + date.getHours()).slice(-2) + ":" +
+            ("00" + date.getMinutes()).slice(-2) + ":" +
+            ("00" + date.getSeconds()).slice(-2);
+        return dateStr;
+
+    }
+
+</script>
+
+
+<!--
+
+Armin vs User
+Admin is OP
+user & pw
+user can only book his station (maybe connected to calendarDB)
+
+
+
+raspberryPI-FE
+
+
+click on desks (maps)
+
+contact field
+-> input for comment
+
+
+-->

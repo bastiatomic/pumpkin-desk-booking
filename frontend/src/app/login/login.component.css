@@ -1,0 +1,27 @@
+*{
+    text-align:center;
+    font-family: Helvetica, Arial, sans-serif;
+
+}
+.landing-page{
+    display: grid;
+    grid-template: repeat(2, 1fr) / 1fr;
+}
+.login{
+    grid-row-start: 1;
+
+}
+.support{
+    grid-row-start: 2;
+}
+.large_button{
+    margin-bottom: 1em;
+}
+
+.landing-page .login .input{
+    max-height: 3em;
+}
+
+.landing-page .support .question{
+    min-height: 8em;
+}

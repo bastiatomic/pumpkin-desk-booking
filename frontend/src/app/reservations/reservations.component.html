@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<div *ngFor="let item of reservations_list">
+    
+    <div class="reservation_box">
+        <p class="name">Name: {{item.id}} <br> Reservierung am: {{toDE_date(item.timeStart)}}</p>
+        <p class="date">Von: {{toDE_time(item.timeStart)}} <br>Bis: {{toDE_time(item.timeEnd)}}</p>
+        <!--<p class="date">Bis: {{toDEstring(item.timeEnd)}}</p>-->
+        <button (click)="cancelRes(item.id)" class="cancel">Buchung löschen</button>
+        <button class="more">Mehr...</button>
+    </div>
+
+</div>
+
